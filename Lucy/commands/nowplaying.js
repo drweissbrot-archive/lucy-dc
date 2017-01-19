@@ -1,0 +1,38 @@
+const axios = require('axios')
+
+module.exports = function (cmd, msg) {
+	var message = 'Gerade läuft'
+
+	if (this.songMeta.current_event == 'DJ-Pony Lucy' || this.songMeta.current_event == 'DJ-Pony Mary') {
+		message += ' im Auto-DJ:\n\n'
+	} else {
+		message += ': **' + this.songMeta.current_event + '**\n\n'
+	}
+
+	message += ':musical_note:  **' + this.songMeta.song + '**\n\n'
+
+	var votes = this.songMeta.upvotes - this.songMeta.downvotes
+
+	if (votes > 0) {
+		message += votes + '  :heart:  |  '
+	} else if (votes < 0) {
+		message += votes * -1 + '  :angry:  |  '
+	}
+
+	message += this.songMeta.listener + '  :man:'
+
+	// get YouTube URL
+	axios.get('https://www.googleapis.com/youtube/v3/search?part=id&q=' + this.songMeta.artist + ' ' + this.songMeta.title + '&maxResults=1&type=video&key=' + this.cfg.google_api_key)
+	.then((res) => {
+		if (res.data.items.length > 0) {
+			message += '  |  https://youtu.be/' + res.data.items[0].id.videoId
+		}
+
+		return msg.channel.sendMessage(message)
+	})
+	.catch((err) => {
+		console.error(err)
+
+		return msg.channel.sendMessage(message)
+	})
+}
