@@ -10,7 +10,7 @@ class EventHandlers {
 
 		// manually trigger command for good night wishes
 		if (msg.content.includes('gute nacht') || msg.content.includes('nachti')) {
-			return this.cmd.handleCommand('nacht', msg)
+			return this.cmd.handleCommand(this, 'nacht', msg)
 		}
 
 		// check if prefixed
