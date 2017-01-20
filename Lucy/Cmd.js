@@ -42,9 +42,11 @@ class Cmd {
 	}
 
 	sentByOp (msg) {
-		for (var i = 0; i < msg.member._roles.length; i++) {
-			if (msg.member._roles[i].indexOf(this.cfg.op_role_ids) != -1) {
-				return true
+		for (var i = 0; i < this.cfg.op_role_ids.length; i++) {
+			for (var i = 0; i < msg.member._roles.length; i++) {
+				if (msg.member._roles[i].indexOf(this.cfg.op_role_ids[i]) != -1) {
+					return true
+				}
 			}
 		}
 
