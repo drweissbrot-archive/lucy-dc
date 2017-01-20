@@ -42,9 +42,11 @@ class Cmd {
 	}
 
 	sentByOp (msg) {
+		// cycle through all op role ids and the member's ids
+		// if one matches, they're an op
 		for (var i = 0; i < this.cfg.op_role_ids.length; i++) {
-			for (var i = 0; i < msg.member._roles.length; i++) {
-				if (msg.member._roles[i].indexOf(this.cfg.op_role_ids[i]) != -1) {
+			for (var j = 0; j < msg.member._roles.length; j++) {
+				if (this.cfg.op_role_ids[i] == msg.member._roles[j]) {
 					return true
 				}
 			}
