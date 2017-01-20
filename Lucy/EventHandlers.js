@@ -1,7 +1,5 @@
 class EventHandlers {
 	onMessage (msg) {
-		console.log('DEBUG: << ' + msg.content)
-
 		// cancel if user is a bot
 		if (msg.author.bot) {
 			return
