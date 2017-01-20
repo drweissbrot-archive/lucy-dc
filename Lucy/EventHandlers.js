@@ -1,7 +1,7 @@
 class EventHandlers {
 	onMessage (msg) {
-		// cancel if user is a bot
-		if (msg.author.bot) {
+		// cancel if user is a bot or message was sent in private
+		if (msg.author.bot || msg.channel.type == 'dm') {
 			return
 		}
 
