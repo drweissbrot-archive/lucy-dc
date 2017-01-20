@@ -64,6 +64,8 @@ module.exports = {
 
 		next: require('./commands/next'),
 		onair: require('./commands/onair'),
-		offair: require('./commands/offair')
+		offair: require('./commands/offair'),
+
+		roles: require('/.commands/roles')
 	}
 }
