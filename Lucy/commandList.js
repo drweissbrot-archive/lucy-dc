@@ -66,6 +66,6 @@ module.exports = {
 		onair: require('./commands/onair'),
 		offair: require('./commands/offair'),
 
-		roles: require('/.commands/roles')
+		roles: require('./commands/roles')
 	}
 }
