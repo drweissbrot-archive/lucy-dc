@@ -1,3 +1,3 @@
 module.exports = function (cmd, msg) {
-	msg.reply(msg.member._roles)
+	return msg.reply(msg.member._roles)
 }

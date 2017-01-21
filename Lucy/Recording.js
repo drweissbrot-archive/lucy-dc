@@ -25,7 +25,7 @@ class Recording {
 	}
 
 	isRunning () {
-		return ! (fs.statSync(__dirname + '/../recording.txt')['size'] == 0)
+		return (! fs.statSync(__dirname + '/../recording.txt')['size'] == 0)
 	}
 
 	tweetShow () {

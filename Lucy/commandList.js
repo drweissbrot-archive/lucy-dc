@@ -51,6 +51,7 @@ module.exports = {
 		nowplaying: [
 			'song',
 		],
+
 		show: [
 			'event',
 		],

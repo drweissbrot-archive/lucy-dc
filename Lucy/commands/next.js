@@ -15,11 +15,13 @@ module.exports = function (cmd, msg) {
 		})
 		.catch((err) => {
 			console.error(err)
+
 			return msg.reply('geht nicht. :lucy_oO: | @drweissbrot')
 		})
 	})
 	.catch((err) => {
 		console.error(err)
+
 		return msg.reply('geht nicht. :lucy_oO: | @drweissbrot')
 	})
 }

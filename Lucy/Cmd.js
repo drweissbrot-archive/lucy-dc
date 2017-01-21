@@ -1,5 +1,5 @@
 class Cmd {
-	constructor() {
+	constructor () {
 		this.commandList = require('./commandList')
 	}
 
@@ -38,6 +38,7 @@ class Cmd {
 	parseMessageToCommand (msg) {
 		msg = msg.content.replace('lucy_light, ', '')
 		msg = msg.replace('lucy_light ', '')
+
 		return msg.replace('!! ', '')
 	}
 
