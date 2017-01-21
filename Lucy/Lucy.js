@@ -1,5 +1,6 @@
 const discord = require('discord.js')
 const moment = require('moment')
+const twitter = require('twitter')
 
 const Cmd = require('./Cmd')
 const EventHandlers = require('./EventHandlers')
@@ -19,6 +20,13 @@ class Lucy {
 		this.eventHandlers = new EventHandlers()
 		this.recording = new Recording(this)
 		this.services = new Services()
+
+		this.twitterClient = new twitter({
+			consumer_key: this.lcy.cfg.twitter.consumer_key,
+			consumer_secret: this.lcy.cfg.twitter.consumer_secret,
+			access_token_key: this.lcy.cfg.twitter.access_token_key,
+			access_token_secret: this.lcy.cfg.twitter.access_token_secret
+		})
 
 		// instanciate a Discord bot
 		this.bot = new discord.Client()

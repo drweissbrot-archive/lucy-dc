@@ -1,17 +1,9 @@
 const childProcess = require('child_process')
 const fs = require('fs')
-const twitter = require('twitter')
 
 class Recording {
 	constructor (lcy) {
 		this.lcy = lcy
-
-		this.twitterClient = new twitter({
-			consumer_key: this.lcy.cfg.twitter.consumer_key,
-			consumer_secret: this.lcy.cfg.twitter.consumer_secret,
-			access_token_key: this.lcy.cfg.twitter.access_token_key,
-			access_token_secret: this.lcy.cfg.twitter.access_token_secret
-		})
 
 		this.createEmptyRecordingFile()
 	}
@@ -50,7 +42,7 @@ class Recording {
 				text += ' #MLP'
 			}
 
-			this.twitterClient.post('statuses/update', {
+			this.lcy.twitterClient.post('statuses/update', {
 				status: text
 			},  (err, tweet, res) => {
 				if (err) {
