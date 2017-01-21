@@ -18,7 +18,11 @@ class Services {
 			}
 
 			// announce again if already announced, but not as 'coming up now'
-			if (this.lastAnnouncedShow.id == this.nextShow.id && this.lastAnnouncedShow.as == 'soon' && moment(this.nextShow.start.dateTime).diff() < 900000) {
+			if (this.lastAnnouncedShow.id == this.nextShow.id && this.lastAnnouncedShow.as == 'soon') {
+				if (moment(this.nextShow.start.dateTime).diff() > 900000) {
+					return
+				}
+
 				this.lastAnnouncedShow = {
 					id: this.nextShow.id,
 					as: 'now'
@@ -79,6 +83,9 @@ class Services {
 	}
 
 	announceNextShow () {
+		console.log(this.lastAnnouncedShow)
+		console.log(this.nextShow)
+
 		var absoluteTime = moment(this.nextShow.start.dateTime).format('HH:mm')
 
 		if (moment(this.nextShow.start.dateTime).diff() >= 900000) {
