@@ -12,25 +12,28 @@ class Services {
 
 			this.nextShow = this.services.sortGoogleCalenderItems(res.data.items)[0]
 
+			// exit if show was already announced as 'coming up now'
 			if (this.lastAnnouncedShow.id == this.nextShow.id && this.lastAnnouncedShow.as == 'now') {
 				return
-			} else if (this.lastAnnouncedShow.id == this.nextShow.id && this.lastAnnouncedShow.as == 'soon') {
-				if (moment(this.nextShow.start.dateTime).diff() < 900000) {
-					this.services.announceNextShow.call(this)
+			}
 
-					this.lastAnnouncedShow = {
-						id: this.nextShow.id,
-						as: 'now'
-					}
-				}
-			} else {
-				this.services.announceNextShow.call(this)
-
+			// announce again if already announced, but not as 'coming up now'
+			if (this.lastAnnouncedShow.id == this.nextShow.id && this.lastAnnouncedShow.as == 'soon' && moment(this.nextShow.start.dateTime).diff() < 900000) {
 				this.lastAnnouncedShow = {
 					id: this.nextShow.id,
-					as: 'soon'
+					as: 'now'
 				}
+
+				return this.services.announceNextShow.call(this)
 			}
+
+			// announce once as 'coming up soon'
+			this.lastAnnouncedShow = {
+				id: this.nextShow.id,
+				as: 'soon'
+			}
+
+			return this.services.announceNextShow.call(this)
 		})
 		.catch((err) => {
 			console.error(err)
