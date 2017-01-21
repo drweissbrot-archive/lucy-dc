@@ -22,10 +22,10 @@ class Lucy {
 		this.services = new Services()
 
 		this.twitterClient = new twitter({
-			consumer_key: this.lcy.cfg.twitter.consumer_key,
-			consumer_secret: this.lcy.cfg.twitter.consumer_secret,
-			access_token_key: this.lcy.cfg.twitter.access_token_key,
-			access_token_secret: this.lcy.cfg.twitter.access_token_secret
+			consumer_key: this.cfg.twitter.consumer_key,
+			consumer_secret: this.cfg.twitter.consumer_secret,
+			access_token_key: this.cfg.twitter.access_token_key,
+			access_token_secret: this.cfg.twitter.access_token_secret
 		})
 
 		// instanciate a Discord bot
