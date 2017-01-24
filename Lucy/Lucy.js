@@ -13,7 +13,8 @@ class Lucy {
 		this.cfg = cfg
 
 		// set up empty objects
-		this.lastAnnouncedShow = this.cache = {}
+		this.lastAnnouncedShow = {}
+		this.cache = {}
 
 		// load some libraries
 		this.cmd = new Cmd()
@@ -21,6 +22,7 @@ class Lucy {
 		this.recording = new Recording(this)
 		this.services = new Services()
 
+		// instanciate a Twitter client
 		this.twitterClient = new twitter({
 			consumer_key: this.cfg.twitter.consumer_key,
 			consumer_secret: this.cfg.twitter.consumer_secret,
