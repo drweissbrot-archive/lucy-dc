@@ -34,6 +34,10 @@ class EventHandlers {
 		// save the channel object
 		this.channel = this.bot.channels.get(this.cfg.channel_id)
 
+		return console.info('Logged in and started up')
+	}
+
+	onStartup () {
 		// listen for messages
 		// wait 5 seconds before that for data to be fetched
 		this.bot.removeListener('message', this.eventHandlers.onMessage)
@@ -49,12 +53,14 @@ class EventHandlers {
 
 		// every 10 seconds: update song data
 		this.bot.clearInterval(this.cache.updateSongMetaInterval)
+
 		this.cache.updateSongMetaInterval = this.bot.setInterval(() => {
 			this.services.updateSongMeta.call(this)
 		}, 10000)
 
 		// every 60 seconds: update event data
 		this.bot.clearInterval(this.cache.updateShowDataInterval)
+
 		this.cache.updateShowDataInterval = this.bot.setInterval(() => {
 			this.services.updateShowData.call(this)
 		}, 60000)
@@ -62,8 +68,6 @@ class EventHandlers {
 		// run services once to get started
 		this.services.updateSongMeta.call(this)
 		this.services.updateShowData.call(this)
-
-		return console.info('Logged in and started up')
 	}
 }
 

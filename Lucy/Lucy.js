@@ -38,6 +38,9 @@ class Lucy {
 			this.eventHandlers.onReady.call(this)
 		})
 
+		// start up services
+		this.eventHandlers.onStartup.call(this)
+
 		// set moment locale
 		moment.locale('de')
 	}
