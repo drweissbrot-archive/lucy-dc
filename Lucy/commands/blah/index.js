@@ -39,6 +39,7 @@ module.exports = {
 	'pfudor': require('./pfudor.json'),
 
 	// People
+	'andromeda': require('./andromeda.json'),
 	'jaster': require('./jaster.json'),
 	'pierre': require('./pierre.json'),
 	'prot': require('./pierre.json'),

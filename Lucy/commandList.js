@@ -40,6 +40,7 @@ module.exports = {
 			'pfudor',
 
 			// People
+			'andromeda',
 			'jaster',
 			'pierre',
 			'prot',
