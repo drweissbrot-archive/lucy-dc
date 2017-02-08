@@ -1,12 +1,10 @@
 const axios = require('axios')
 
 module.exports = function (cmd, msg) {
-	var message = '🔴'
-
 	if (this.songMeta.current_event == 'DJ-Pony Lucy' || this.songMeta.current_event == 'DJ-Pony Mary') {
-		message += ' im Auto-DJ:\n\n'
+		var message += 'Gerade läuft im Auto-DJ:\n\n'
 	} else {
-		message += ': **' + this.songMeta.current_event + '**\n\n'
+		var message += '🔴 **' + this.songMeta.current_event + '**\n\n'
 	}
 
 	message += ':musical_note:  **' + this.songMeta.song + '**\n\n'
