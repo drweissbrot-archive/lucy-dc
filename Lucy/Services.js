@@ -93,7 +93,7 @@ class Services {
 		}
 
 		var message = '**' + moment().to(this.nextShow.start.dateTime) + ' (' + absoluteTime + ' Uhr)' + '**\n\n'
-		message += ':musical_note:  **' + this.nextShow.summary.toUpperCase() + '**\n\n'
+		message += '🎵  **' + this.nextShow.summary.toUpperCase() + '**\n\n'
 		message += '```' + this.nextShow.description + '```'
 
 		this.broadcast.call(this, message)

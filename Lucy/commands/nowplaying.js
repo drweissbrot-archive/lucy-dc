@@ -1,7 +1,7 @@
 const axios = require('axios')
 
 module.exports = function (cmd, msg) {
-	var message = 'Gerade läuft'
+	var message = '🔴'
 
 	if (this.songMeta.current_event == 'DJ-Pony Lucy' || this.songMeta.current_event == 'DJ-Pony Mary') {
 		message += ' im Auto-DJ:\n\n'
@@ -14,12 +14,12 @@ module.exports = function (cmd, msg) {
 	var votes = this.songMeta.upvotes - this.songMeta.downvotes
 
 	if (votes > 0) {
-		message += votes + '  :heart:  |  '
+		message += votes + '  💖  |  '
 	} else if (votes < 0) {
-		message += votes * -1 + '  :angry:  |  '
+		message += votes * -1 + '  💔  |  '
 	}
 
-	message += this.songMeta.listener + '  :man:'
+	message += this.songMeta.listener + '  👥'
 
 	// get YouTube URL
 	axios.get('https://www.googleapis.com/youtube/v3/search?part=id&q=' + this.songMeta.artist + ' ' + this.songMeta.title + '&maxResults=1&type=video&key=' + this.cfg.google_api_key)

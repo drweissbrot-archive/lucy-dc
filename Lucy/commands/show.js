@@ -19,7 +19,7 @@ function composeMessage() {
 		return message += '```' + this.nextShow.description + '```'
 	}
 
-	message = 'Gerade läuft: **' + this.nextShow.summary + '** bis ' + moment(this.nextShow.end.dateTime).format('HH:mm') + '\n\n'
+	message = '🔴 **' + this.nextShow.summary + '** bis ' + moment(this.nextShow.end.dateTime).format('HH:mm') + '\n\n'
 
 	return message += '```' + this.nextShow.description + '```'
 }
