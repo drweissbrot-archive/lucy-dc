@@ -100,7 +100,7 @@ class Services {
 
 	checkFluttertrain () {
 		const song = this.songMeta.song.toLowerCase()
-		const isFluttertrain = (song.contains('vsi') && song.contains('assertiveness'))
+		const isFluttertrain = (song.includes('vsi') && song.includes('assertiveness'))
 
 		if (! isFluttertrain) {
 			return this.cache.fluttertrainPosted = false
