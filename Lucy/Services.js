@@ -111,7 +111,7 @@ class Services {
 
 		if (isFluttertrain && ! this.cache.fluttertrainPosted) {
 			return this.broadcast('https://orig05.deviantart.net/b7b5/f/2013/268/8/0/fluttertrain_by_bronycopter-d6ntenh.gif')
-		})
+		}
 	}
 }
 
