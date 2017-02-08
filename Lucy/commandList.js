@@ -55,6 +55,10 @@ module.exports = {
 		show: [
 			'event',
 		],
+
+		hallo: [
+			'hallöchen~',
+		],
 	},
 
 	commands: {
@@ -67,6 +71,7 @@ module.exports = {
 		onair: require('./commands/onair'),
 		offair: require('./commands/offair'),
 
+		hallo: require('./commands/hallo'),
 		roles: require('./commands/roles')
 	}
 }
