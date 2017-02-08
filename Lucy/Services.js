@@ -85,9 +85,6 @@ class Services {
 	}
 
 	announceNextShow () {
-		console.log(this.lastAnnouncedShow)
-		console.log(this.nextShow)
-
 		var absoluteTime = moment(this.nextShow.start.dateTime).format('HH:mm')
 
 		if (moment(this.nextShow.start.dateTime).diff() >= 900000) {
