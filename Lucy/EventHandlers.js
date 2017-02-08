@@ -13,6 +13,11 @@ class EventHandlers {
 			return this.cmd.handleCommand(this, 'nacht', msg)
 		}
 
+		// manually trigger command for saying hello
+		if (msg.content.includes('hallo') || msg.content.includes('hallöchen~')) {
+			return this.cmd.handleCommand(this, 'hallo', msg)
+		}
+
 		// check if prefixed
 		if (! this.cmd.isPrefixed(msg)) {
 			return
