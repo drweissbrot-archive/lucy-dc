@@ -59,6 +59,8 @@ class Services {
 			} else {
 				this.setStatus('online')
 			}
+
+			this.services.checkFluttertrain.call(this)
 		})
 		.catch((err) => {
 			console.error(err)
@@ -97,6 +99,19 @@ class Services {
 		message += '```' + this.nextShow.description + '```'
 
 		this.broadcast.call(this, message)
+	}
+
+	checkFluttertrain () {
+		const song = this.songMeta.song.toLowerCase()
+		const isFluttertrain = (song.contains('vsi') && song.contains('assertiveness'))
+
+		if (! isFluttertrain) {
+			return this.cache.fluttertrainPosted = false
+		}
+
+		if (isFluttertrain && ! this.cache.fluttertrainPosted) {
+			return this.broadcast('https://orig05.deviantart.net/b7b5/f/2013/268/8/0/fluttertrain_by_bronycopter-d6ntenh.gif')
+		})
 	}
 }
 
