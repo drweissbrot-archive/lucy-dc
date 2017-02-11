@@ -9,8 +9,13 @@ class EventHandlers {
 		msg.content = msg.content.toLowerCase()
 
 		// manually trigger command for good night wishes
+		// only send this message once every five minutes, though
 		if (msg.content.includes('gute nacht') || msg.content.includes('nachti')) {
-			return this.cmd.handleCommand(this, 'nacht', msg)
+			if (! this.cache.goodNight || (this.cache.goodNight < (+new Date()) - 300000)) {
+				this.cache.goodNight = (+new Date())
+
+				return this.cmd.handleCommand(this, 'nacht', msg)
+			}
 		}
 
 		// manually trigger command for saying hello
