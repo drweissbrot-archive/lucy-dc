@@ -41,6 +41,7 @@ module.exports = {
 	// People
 	'andromeda': require('./andromeda.json'),
 	'jaster': require('./jaster.json'),
+	'morben': require('./morben.json'),
 	'pierre': require('./pierre.json'),
 	'prot': require('./pierre.json'),
 	'topbat': require('./topbat.json'),

@@ -42,6 +42,7 @@ module.exports = {
 			// People
 			'andromeda',
 			'jaster',
+			'morben',
 			'pierre',
 			'prot',
 			'topbat',
