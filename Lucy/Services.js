@@ -12,8 +12,8 @@ class Services {
 
 			this.nextShow = this.services.sortGoogleCalenderItems(res.data.items)[0]
 
-			// exit if show was already announced as 'coming up now'
-			if (this.lastAnnouncedShow.id == this.nextShow.id && this.lastAnnouncedShow.as == 'now') {
+			// exit if show was already announced as 'coming up now' or if another show is running
+			if (this.lastAnnouncedShow.id == this.nextShow.id && this.lastAnnouncedShow.as == 'now' || ! this.songMeta.autoDj) {
 				return
 			}
 
@@ -55,6 +55,7 @@ class Services {
 			if (this.songMeta.status != 'online') {
 				this.setStatus('dnd')
 			} else if (this.songMeta.current_event == 'DJ-Pony Lucy' || this.songMeta.current_event == 'DJ-Pony Mary') {
+				this.songMeta.autoDj = true
 				this.setStatus('idle')
 			} else {
 				this.setStatus('online')
