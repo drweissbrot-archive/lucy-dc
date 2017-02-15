@@ -1,5 +1,6 @@
-const childProcess = require('child_process')
 const fs = require('fs')
+const http = require('http')
+const moment = require('moment')
 
 class Recording {
 	constructor (lcy) {
@@ -21,6 +22,8 @@ class Recording {
 	}
 
 	tweetShow () {
+		return new Promise((resolve, reject) => {resolve()}) // TODO debug
+
 		return new Promise((resolve, reject) => {
 			var text = this.lcy.nextShow.summary
 
@@ -63,25 +66,36 @@ class Recording {
 				return reject(err)
 			})
 
-			// start streamripper
-			var streamripper = childProcess.execFile('streamripper', [
-				'http://radio.bronyradiogermany.com:8000/live.m3u',
-				'-a', '-A', '-l', '90000', '-u LucyLight',
-				'> ' + __dirname + '/../sr-log.txt'
-			], (err, stdout, stderr) => {
-				if (err) {
-					return reject(err)
+			// find out name for stream recording
+			this.recordingName = __dirname + '/../Brony Radio Germany/' + moment().format('YYYY-MM-DD-HH-mm-ss') + '.mp3'
+
+			// rip stream
+			this.rip = http.get('http://radio.bronyradiogermany.com:8000/stream', (res) => {
+				if (res.statusCode != 200) {
+					console.error(res.statusCode)
+
+					return reject(res.statusCode)
 				}
+
+				res.on('data', (chunk) => {
+					fs.appendFile(this.recordingName, chunk, (err) => {
+						if (err) {
+							return reject(err)
+						}
+					})
+				})
 			})
 
-			// write pid to file
-			fs.writeFile(__dirname + '/../recording.txt', streamripper.pid, (err) => {
+			// write something to recording file
+			fs.writeFile(__dirname + '/../recording.txt', this.recordingName, (err) => {
 				if (err) {
 					return reject(err)
 				}
 
 				return resolve()
 			})
+
+			return resolve()
 		})
 	}
 
@@ -92,15 +106,11 @@ class Recording {
 					reject(err)
 				}
 
-				childProcess.execFile('kill', [content], (err, stdout, stderr) => {
-					if (err) {
-						return reject(err)
-					}
-				})
+				this.rip.abort()
 
 				this.createEmptyRecordingFile()
 
-				resolve()
+				return resolve()
 			})
 		})
 	}
