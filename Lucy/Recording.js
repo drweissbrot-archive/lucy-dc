@@ -22,8 +22,6 @@ class Recording {
 	}
 
 	tweetShow () {
-		return new Promise((resolve, reject) => {resolve()}) // TODO debug
-
 		return new Promise((resolve, reject) => {
 			var text = this.lcy.nextShow.summary
 
