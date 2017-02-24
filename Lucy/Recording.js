@@ -12,7 +12,7 @@ class Recording {
 	createEmptyRecordingFile () {
 		fs.writeFile(__dirname + '/../recording.txt', '', (err) => {
 			if (err) {
-				console.err(err)
+				console.error(err)
 			}
 		})
 	}
@@ -105,7 +105,6 @@ class Recording {
 				}
 
 				this.rip.abort()
-
 				this.createEmptyRecordingFile()
 
 				return resolve()
