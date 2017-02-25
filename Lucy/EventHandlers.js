@@ -19,7 +19,7 @@ class EventHandlers {
 		}
 
 		// manually trigger command for saying hello
-		if (msg.content.includes('hallo') || msg.content.includes('hallöchen~')) {
+		if (msg.content.includes('hallo lucy') || msg.content.includes('hallöchen~') || msg.content.includes('hallo alle')) {
 			return this.cmd.handleCommand(this, 'hallo', msg)
 		}
 
